@@ -65,12 +65,6 @@ service p2p_supplicant /system/bin/wpa_supplicant -ddd \
     disabled
     oneshot
 
-service wlan_detect /system/bin/wlan_detect
-    class main
-    user root
-    group root
-    oneshot
-
 service gps_check /system/bin/gps_check
     class main
     user root
@@ -141,8 +135,8 @@ on emmc-fs
     wait /dev/block/platform/msm_sdcc.3/by-num/p14
     mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p14 /persist nosuid nodev barrier=1
 
-    wait /dev/block/platform/msm_sdcc.3/by-num/p20
-    exec /system/bin/sh -c "/system/xbin/busybox mount /dev/block/platform/msm_sdcc.3/by-num/p20  /storage/sdcard0"
+    #wait /dev/block/platform/msm_sdcc.3/by-num/p20
+    #exec /system/bin/sh -c "/system/xbin/busybox mount /dev/block/platform/msm_sdcc.3/by-num/p20  /storage/sdcard0"
 
 on fs
 	# mount mtd partitions
