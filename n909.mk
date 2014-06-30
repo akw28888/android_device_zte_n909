@@ -159,6 +159,11 @@ PRODUCT_COPY_FILES += \
 
 # Properties
 
+# Media
+PRODUCT_COPY_FILES += \
+    device/zte/n909/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    device/zte/n909/etc/media_codecs.xml:system/etc/media_codecs.xml
+
 # transmitter isn't supported
 PRODUCT_PROPERTY_OVERRIDES += \
 #    ro.fm.mulinst.recording.support=false \
