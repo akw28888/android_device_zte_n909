@@ -81,7 +81,7 @@ BOARD_HARDWARE_CLASS := device/zte/n909/cmhw
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=enforcing
 BOARD_PAGE_SIZE := 2048
-TARGET_KERNEL_SOURCE := kernel/zte/n909
+TARGET_KERNEL_SOURCE := kernel/zte/8x25q
 TARGET_KERNEL_CONFIG := n909_defconfig
 
 # Lights
