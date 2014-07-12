@@ -21,9 +21,9 @@ index b5d909f..76f8af4 100644
 --- a/res/values-zh-rCN/cm_strings.xml
 +++ b/res/values-zh-rCN/cm_strings.xml
 @@ -874,4 +874,9 @@
-   <string name="menu_hidden_apps_reset_lock">重置锁定图案</string>
-   <string name="protected_apps">受保护的应用</string>
-   <string name="saving_protected_components">正在保存组件状态\u2026</string>
+   <string name="show_dev_already_cm">没有必要，您已启用开发者选项。</string>
+   <string name="enable_adb_cm">Android 调试</string>
+   <string name="enable_adb_summary_cm">开启 Android Debug Bridge (adb) 界面</string>
 +  <string name="storage_switch_title">默认存储位置切换</string>
 +  <string name="storage_switch_summary_off">使用内置存储存放数据</string>
 +  <string name="storage_switch_summary_on">使用SD卡存放数据</string>
