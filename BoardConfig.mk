@@ -106,14 +106,18 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Recovery
 TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/n909/recovery/recovery-keys.c
+RECOVERY_VARIANT := philz
 TARGET_RECOVERY_INITRC := device/zte/n909/recovery/init.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 480x854
 TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics.c
+
+#philz recovery
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn20_12x34.h\"
 
 # CWM_CN
-#BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics_cn.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics_cn.c
 #BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn22_12x32.h\"
 
 # CM Recovery
