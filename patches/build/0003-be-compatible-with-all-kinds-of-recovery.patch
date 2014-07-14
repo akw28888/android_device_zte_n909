@@ -1,0 +1,40 @@
+From 2cffcb1a7f085d4061b09125be636cb8e8e22b84 Mon Sep 17 00:00:00 2001
+From: Mkey_NJU <ilovemkey@gmail.com>
+Date: Mon, 14 Jul 2014 23:27:50 +0800
+Subject: [PATCH] be compatible with all kinds of recovery
+
+Change-Id: I3d38dc1763e0f64c1ed04e47bc4b31f134b85cb6
+---
+ core/Makefile                         | 2 +-
+ tools/releasetools/edify_generator.py | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/Makefile b/core/Makefile
+index 48469f6..acc22b1 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -1388,7 +1388,7 @@ ifdef PRODUCT_EXTRA_RECOVERY_KEYS
+ 	$(hide) echo "extra_recovery_keys=$(PRODUCT_EXTRA_RECOVERY_KEYS)" >> $(zip_root)/META/misc_info.txt
+ endif
+ 	$(hide) echo "mkbootimg_args=$(BOARD_MKBOOTIMG_ARGS)" >> $(zip_root)/META/misc_info.txt
+-	$(hide) echo "use_set_metadata=1" >> $(zip_root)/META/misc_info.txt
++	#$(hide) echo "use_set_metadata=1" >> $(zip_root)/META/misc_info.txt
+ 	$(hide) echo "multistage_support=1" >> $(zip_root)/META/misc_info.txt
+ 	$(hide) echo "update_rename_support=1" >> $(zip_root)/META/misc_info.txt
+ 	$(hide) echo "ota_script_path=$(OTA_FROM_TARGET_SCRIPT)" >> $(zip_root)/META/misc_info.txt
+diff --git a/tools/releasetools/edify_generator.py b/tools/releasetools/edify_generator.py
+index de82455..6f71014 100644
+--- a/tools/releasetools/edify_generator.py
++++ b/tools/releasetools/edify_generator.py
+@@ -98,7 +98,7 @@ class EdifyGenerator(object):
+            ' || abort("This package is for \\"%s\\" devices; '
+            'this is a \\"" + getprop("ro.product.device") + "\\".");'
+            ');') % device
+-    self.script.append(self._WordWrap(cmd))
++    #self.script.append(self._WordWrap(cmd))
+ 
+   def AssertSomeBootloader(self, *bootloaders):
+     """Asert that the bootloader version is one of *bootloaders."""
+-- 
+1.9.1
+
