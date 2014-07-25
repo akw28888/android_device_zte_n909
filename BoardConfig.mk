@@ -157,6 +157,20 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
+WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/ath6kl/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
+
+KERNEL_EXTERNAL_MODULES:
+	mkdir -p $(TARGET_ROOT_OUT)/ath6kl
+	rm -rf $(TARGET_OUT_INTERMEDIATES)/compat-wireless
+	cp -a device/zte/n909/c $(TARGET_OUT_INTERMEDIATES)/
+	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211 KERNEL_OUT=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-" modules
+	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless/ath6kl KERNEL_OUT=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-" modules
+	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211/cfg80211.ko $(KERNEL_MODULES_OUT)/ath6kl/cfg80211.ko
+	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/ath6kl/ath6kl_sdio.ko $(KERNEL_MODULES_OUT)/ath6kl/ath6kl_sdio.ko
+	ln -sf /system/lib/modules/ath6kl/cfg80211.ko $(KERNEL_MODULES_OUT)/cfg80211.ko
+	ln -sf /system/lib/modules/ath6kl/ath6kl_sdio.ko $(KERNEL_MODULES_OUT)/ath6kl_sdio.ko
+
+TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
+
