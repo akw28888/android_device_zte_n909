@@ -164,7 +164,7 @@ WIFI_EXT_MODULE_NAME := "cfg80211"
 KERNEL_EXTERNAL_MODULES:
 	mkdir -p $(TARGET_ROOT_OUT)/ath6kl
 	rm -rf $(TARGET_OUT_INTERMEDIATES)/compat-wireless
-	cp -a device/zte/n909/c $(TARGET_OUT_INTERMEDIATES)/
+	cp -a device/zte/n909/compat-wireless $(TARGET_OUT_INTERMEDIATES)/
 	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211 KERNEL_OUT=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-" modules
 	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless/ath6kl KERNEL_OUT=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-" modules
 	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211/cfg80211.ko $(KERNEL_MODULES_OUT)/ath6kl/cfg80211.ko
