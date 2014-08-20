@@ -1,0 +1,2 @@
+.myfiles/scripts/target/pm_onoff.sh:system/bin/pm_onoff.sh
+.myfiles/scripts/target/init.d-PMUpdateOnly:system/etc/init.d/91PMUpdateOnly

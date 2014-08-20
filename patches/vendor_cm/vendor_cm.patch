@@ -1,0 +1,71 @@
+diff --git a/config/common.mk b/config/common.mk
+index bd0cc81..6742b6b 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -67,15 +67,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
+     ro.build.selinux=1
+ 
+ # Thank you, please drive thru!
+ PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
+ 
+-ifneq ($(TARGET_BUILD_VARIANT),eng)
+-# Enable ADB authentication
+-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
+-endif
+-
+ # Copy over the changelog to the device
+ PRODUCT_COPY_FILES += \
+     vendor/cm/CHANGELOG.mkdn:system/etc/CHANGELOG-CM.txt
+ 
+ # Backup Tool
+@@ -313,13 +299,10 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
+     CM_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+   endif
+ endif
+ endif
+ 
+-# by default, do not update the recovery with system updates
+-PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
+-
+ PRODUCT_PROPERTY_OVERRIDES += \
+   ro.cm.display.version=$(CM_DISPLAY_VERSION)
+ 
+ -include $(WORKSPACE)/build_env/image-auto-bits.mk
+ 
+diff --git a/sepolicy/file_contexts b/sepolicy/file_contexts
+index e23df31..78b3ee1 100644
+--- a/sepolicy/file_contexts
++++ b/sepolicy/file_contexts
+@@ -4,7 +4,5 @@
+ # performance-related sysfs files (CM)
+ /sys/kernel/mm/ksm(/.*)?       --          u:object_r:sysfs_writable:s0
+ /sys/devices/system/cpu.*/cpufreq(/.*)? --  u:object_r:sysfs_devices_system_cpu:s0
+ /sys/block/mmcblk0/queue/scheduler  --    u:object_r:sysfs_writable:s0
+ 
+-/data/hostapd(/.*)?         u:object_r:wifi_data_file:s0
+-/data/misc/radio(/.*)?      u:object_r:radio_data_file:s0
+diff --git a/sepolicy/netd.te b/sepolicy/netd.te
+deleted file mode 100644
+index 4ad0b3e..0000000
+--- a/sepolicy/netd.te
++++ /dev/null
+@@ -1,4 +0,0 @@
+-allow netd self:capability { setuid sys_module setgid };
+-allow netd self:packet_socket create_socket_perms;
+-allow netd radio_data_file:dir rw_dir_perms;
+-allow netd radio_data_file:file create_file_perms;
+diff --git a/sepolicy/sepolicy.mk b/sepolicy/sepolicy.mk
+index a469015..0508bf6 100644
+--- a/sepolicy/sepolicy.mk
++++ b/sepolicy/sepolicy.mk
+@@ -11,10 +11,8 @@ BOARD_SEPOLICY_UNION += \
+     file_contexts \
+     fs_use \
+     genfs_contexts \
+     seapp_contexts \
+     installd.te \
+-    netd.te \
+-    system.te \
+     ueventd.te \
+     vold.te \
+     mac_permissions.xml
