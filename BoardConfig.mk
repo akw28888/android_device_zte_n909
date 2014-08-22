@@ -114,7 +114,7 @@ TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
 BOARD_CUSTOM_GRAPHICS := device/zte/n909/recovery/graphics.c
 
 # RIL
-BOARD_RIL_CLASS := device/zte/n909/ril/
+BOARD_RIL_CLASS := ../../../device/zte/n909/ril/
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/zte/n909/sepolicy
