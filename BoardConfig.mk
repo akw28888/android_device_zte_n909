@@ -114,7 +114,6 @@ TARGET_RECOVERY_INITRC := device/zte/n909/recovery/init.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 480x854
 TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
-BOARD_CUSTOM_GRAPHICS := device/zte/n909/recovery/graphics.c
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/zte/n909/ril/
