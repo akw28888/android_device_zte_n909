@@ -104,14 +104,17 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Recovery
+RECOVERY_VARIANT := cm
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
+#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/n909/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/zte/n909/recovery/init.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 480x854
 TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
-
+BOARD_CUSTOM_GRAPHICS := device/zte/n909/recovery/graphics.c
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/zte/n909/ril/
+BOARD_RIL_CLASS := device/zte/n909/ril/
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/zte/n909/sepolicy
@@ -133,7 +136,7 @@ TARGET_FORCE_CPU_UPLOAD := true
 # Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
-TARGET_CUSTOM_WIFI := ../../device/zte/n909/libhardware_legacy/wifi/wifi.c
+TARGET_CUSTOM_WIFI := device/zte/n909/libhardware_legacy/wifi/wifi.c
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HAS_ATH_WLAN := true
 BOARD_WLAN_DEVICE := ath6kl

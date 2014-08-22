@@ -714,6 +714,7 @@ struct ion_allocation_data {
 	size_t align;
 	unsigned int flags;
 	struct ion_handle *handle;
+	size_t heap_mask;
 };
 
 /**

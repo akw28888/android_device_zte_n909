@@ -525,6 +525,14 @@ enum {
 	ROTATOR_SUBSYSTEM_ID,
 };
 
+#define MSMFB_DISPLAY_COMMIT _IOW(MSMFB_IOCTL_MAGIC, 164,   struct mdp_display_commit)
+#define MDP_DISPLAY_COMMIT_OVERLAY 1
+struct mdp_display_commit {
+ uint32_t flags;
+ uint32_t wait_for_finish;
+ struct fb_var_screeninfo var;
+};
+
 #ifdef __KERNEL__
 
 /* get the framebuffer physical address information */
