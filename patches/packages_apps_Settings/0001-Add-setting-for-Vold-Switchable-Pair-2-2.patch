@@ -1,6 +1,6 @@
-From f127460341c1c31f2f3409eab3cf7b222acfb4f9 Mon Sep 17 00:00:00 2001
-From: dianlujitao <dianlujitao@gmail.com>
-Date: Mon, 9 Jun 2014 21:43:37 +0800
+From 75fbc6f8e29d5a769b47221546be5b89e522cd23 Mon Sep 17 00:00:00 2001
+From: nx111 <gd.zhangdz@gmail.com>
+Date: Sat, 23 Aug 2014 14:48:04 +0800
 Subject: [PATCH] Add setting for Vold Switchable Pair (2/2)
 
 This will be hidden unless the device has non-emulated internal storage
@@ -8,19 +8,19 @@ and an external SD, in which case persist.sys.vold.switchablepair will be
 set automaticaly.  This does away with the need for ro.vold.switchablepair
 to be set in the build.prop.
 
-Change-Id: I3f234a0129311a8568663297f608e80673ba1493
+Change-Id: I430891ea8a10653bc19d0b85270194764c48504e
 ---
- res/values-zh-rCN/cm_strings.xml                |    5 +++
- res/values/cm_strings.xml                       |    7 +++
- res/xml/device_info_memory.xml                  |    5 +++
- src/com/android/settings/deviceinfo/Memory.java |   53 ++++++++++++++++++++++-
+ res/values-zh-rCN/cm_strings.xml                |  5 +++
+ res/values/cm_strings.xml                       |  7 ++++
+ res/xml/device_info_memory.xml                  |  5 +++
+ src/com/android/settings/deviceinfo/Memory.java | 53 ++++++++++++++++++++++++-
  4 files changed, 69 insertions(+), 1 deletion(-)
 
 diff --git a/res/values-zh-rCN/cm_strings.xml b/res/values-zh-rCN/cm_strings.xml
-index b5d909f..76f8af4 100644
+index 73f3f67..439cc56 100644
 --- a/res/values-zh-rCN/cm_strings.xml
 +++ b/res/values-zh-rCN/cm_strings.xml
-@@ -874,4 +874,9 @@
+@@ -902,6 +902,11 @@
    <string name="show_dev_already_cm">没有必要，您已启用开发者选项。</string>
    <string name="enable_adb_cm">Android 调试</string>
    <string name="enable_adb_summary_cm">开启 Android Debug Bridge (adb) 界面</string>
@@ -29,12 +29,14 @@ index b5d909f..76f8af4 100644
 +  <string name="storage_switch_summary_on">使用SD卡存放数据</string>
 +  <string name="reboot_prompt_title">需要重启</string>
 +  <string name="reboot_prompt_message">"为了应用改变，需要重启设备。\n\n你是否想现在重启？"</string>
- </resources>
+   <string name="spam_added_title">已添加 %1$s</string>
+   <string name="spam_last_blocked_title">最后一次被阻止： %1$s</string>
+   <string name="block_notifications_title">通知过滤</string>
 diff --git a/res/values/cm_strings.xml b/res/values/cm_strings.xml
-index 8b54aba..5f2b544 100644
+index 9ec527b..655722b 100644
 --- a/res/values/cm_strings.xml
 +++ b/res/values/cm_strings.xml
-@@ -734,6 +734,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
+@@ -733,6 +733,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
      <string name="adb_notify">USB debugging notify</string>
      <string name="adb_notify_summary">Display a notification when USB debugging is connected</string>
  
@@ -165,5 +167,5 @@ index 52fef32..ab59290 100644
 +    }
  }
 -- 
-1.7.9.5
+1.9.1
 

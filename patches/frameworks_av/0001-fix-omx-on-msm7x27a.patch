@@ -1,18 +1,18 @@
-From 9d2bcb466b486fc8efc4669a8280c3fe568bbdf0 Mon Sep 17 00:00:00 2001
-From: dianlujitao <dianlujitao@gmail.com>
-Date: Sun, 11 May 2014 12:23:03 +0800
+From 9ba549e0fb00a85b36582d044dc52df19ff9d503 Mon Sep 17 00:00:00 2001
+From: nx111 <gd.zhangdz@gmail.com>
+Date: Sat, 23 Aug 2014 14:27:25 +0800
 Subject: [PATCH] fix omx on msm7x27a
 
-Change-Id: I3a0f710c91f1633652e056ef173b5e63e92141e4
+Change-Id: I37a539779bbd76ada32d19bbf981ca5ce6655fc5
 ---
- media/libmedia/Android.mk                          |    2 +-
- media/libmediaplayerservice/Android.mk             |    4 ++++
- .../libmediaplayerservice/StagefrightRecorder.cpp  |    8 ++++++++
- media/libstagefright/Android.mk                    |    6 +++++-
- 4 files changed, 18 insertions(+), 2 deletions(-)
+ media/libmedia/Android.mk                           | 2 +-
+ media/libmediaplayerservice/Android.mk              | 4 ++++
+ media/libmediaplayerservice/StagefrightRecorder.cpp | 4 ++++
+ media/libstagefright/Android.mk                     | 6 +++++-
+ 4 files changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/media/libmedia/Android.mk b/media/libmedia/Android.mk
-index 8204ee2..63ff6c3 100644
+index 62df848..45721d4 100644
 --- a/media/libmedia/Android.mk
 +++ b/media/libmedia/Android.mk
 @@ -79,7 +79,7 @@ LOCAL_CFLAGS += -DUSE_SAMSUNG_SEPARATEDSTREAM
@@ -25,12 +25,12 @@ index 8204ee2..63ff6c3 100644
              LOCAL_SRC_FILES += IDirectTrack.cpp IDirectTrackClient.cpp
          endif
 diff --git a/media/libmediaplayerservice/Android.mk b/media/libmediaplayerservice/Android.mk
-index badb84c..1c8c32d 100644
+index 1c8c32d..dbbd4f3 100644
 --- a/media/libmediaplayerservice/Android.mk
 +++ b/media/libmediaplayerservice/Android.mk
-@@ -77,6 +77,10 @@ ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
-     endif
- endif #TARGET_ENABLE_QC_AV_ENHANCEMENTS
+@@ -81,6 +81,10 @@ ifeq ($(TARGET_BOARD_PLATFORM),msm7x27a)
+     LOCAL_CFLAGS += -DUSE_SUBMIT_ONE_INPUT_BUFFER
+ endif
  
 +ifeq ($(TARGET_BOARD_PLATFORM),msm7x27a)
 +    LOCAL_CFLAGS += -DUSE_SUBMIT_ONE_INPUT_BUFFER
@@ -40,10 +40,10 @@ index badb84c..1c8c32d 100644
  
  include $(call all-makefiles-under,$(LOCAL_PATH))
 diff --git a/media/libmediaplayerservice/StagefrightRecorder.cpp b/media/libmediaplayerservice/StagefrightRecorder.cpp
-index 81c0862..1441563 100644
+index d3dbcbe..dacf3e9 100644
 --- a/media/libmediaplayerservice/StagefrightRecorder.cpp
 +++ b/media/libmediaplayerservice/StagefrightRecorder.cpp
-@@ -1287,6 +1287,9 @@ void StagefrightRecorder::clipVideoFrameWidth() {
+@@ -1293,6 +1293,9 @@ void StagefrightRecorder::clipVideoFrameWidth() {
  
  status_t StagefrightRecorder::checkVideoEncoderCapabilities(
          bool *supportsCameraSourceMetaDataMode) {
@@ -53,7 +53,7 @@ index 81c0862..1441563 100644
      /* hardware codecs must support camera source meta data mode */
      Vector<CodecCapabilities> codecs;
      OMXClient client;
-@@ -1298,6 +1301,7 @@ status_t StagefrightRecorder::checkVideoEncoderCapabilities(
+@@ -1304,6 +1307,7 @@ status_t StagefrightRecorder::checkVideoEncoderCapabilities(
               mVideoEncoder == VIDEO_ENCODER_H264 ? MEDIA_MIMETYPE_VIDEO_AVC : ""),
              false /* decoder */, true /* hwCodec */, &codecs);
      *supportsCameraSourceMetaDataMode = codecs.size() > 0;
@@ -61,22 +61,11 @@ index 81c0862..1441563 100644
      ALOGV("encoder %s camera source meta-data mode",
              *supportsCameraSourceMetaDataMode ? "supports" : "DOES NOT SUPPORT");
  
-@@ -1656,6 +1660,10 @@ status_t StagefrightRecorder::setupVideoEncoder(
-     uint32_t encoder_flags = 0;
-     if (mIsMetaDataStoredInVideoBuffers) {
-         encoder_flags |= OMXCodec::kStoreMetaDataInVideoBuffers;
-+#ifdef USE_SUBMIT_ONE_INPUT_BUFFER
-+        ALOGW("msm7627 family of chipsets supports, only one buffer at a time");
-+        encoder_flags |= OMXCodec::kOnlySubmitOneInputBufferAtOneTime;
-+#endif
-     }
- 
-     // Do not wait for all the input buffers to become available.
 diff --git a/media/libstagefright/Android.mk b/media/libstagefright/Android.mk
-index 3c56a42..f662bec 100644
+index 7c7da8c..ee1a056 100644
 --- a/media/libstagefright/Android.mk
 +++ b/media/libstagefright/Android.mk
-@@ -93,7 +93,7 @@ else
+@@ -95,7 +95,7 @@ else
  LOCAL_C_INCLUDES += $(TOP)/frameworks/native/include/media/openmax
  endif
  
@@ -85,9 +74,9 @@ index 3c56a42..f662bec 100644
      ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
          ifeq ($(call is-chipset-in-board-platform,msm8960),true)
              LOCAL_SRC_FILES += LPAPlayerALSA.cpp TunnelPlayer.cpp
-@@ -114,6 +114,10 @@ ifneq ($(filter caf bfam,$(TARGET_QCOM_AUDIO_VARIANT)),)
+@@ -112,6 +112,10 @@ ifneq ($(filter caf bfam,$(TARGET_QCOM_AUDIO_VARIANT)),)
              LOCAL_SRC_FILES += LPAPlayer.cpp
-             LOCAL_CFLAGS += -DLEGACY_LPA -DUSE_LPA_MODE
+             LOCAL_CFLAGS += -DLEGACY_LPA
          endif
 +        ifeq ($(call is-chipset-in-board-platform,msm7x27a),true)
 +            LOCAL_SRC_FILES += LPAPlayer.cpp
@@ -97,5 +86,5 @@ index 3c56a42..f662bec 100644
              LOCAL_CFLAGS += -DNO_TUNNEL_MODE_FOR_MULTICHANNEL
          endif
 -- 
-1.7.9.5
+1.9.1
 
