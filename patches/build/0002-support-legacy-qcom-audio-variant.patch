@@ -1,9 +1,9 @@
-From 761d8fae32ba26cce4d7dcfe81a4abcc59a52cb9 Mon Sep 17 00:00:00 2001
-From: nx111 <gd.zhangdz@gmail.com>
-Date: Fri, 6 Jun 2014 00:24:29 +0800
-Subject: [PATCH] qcom audio variant support legacy
+From e66dc95a38e837f598ee8fb146a5c8152cc5986b Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sun, 29 Dec 2013 14:26:11 +0200
+Subject: [PATCH] support legacy qcom audio variant
 
-Change-Id: I494960d1d897f767deb77cf56d4bfefdde236970
+Change-Id: I752c2f6380331f6c8f5d4ba427b04e387ecbc604
 ---
  core/qcom_target.mk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -12,9 +12,7 @@ diff --git a/core/qcom_target.mk b/core/qcom_target.mk
 index e65a6fc..08680b0 100644
 --- a/core/qcom_target.mk
 +++ b/core/qcom_target.mk
-@@ -10,11 +10,11 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-         TARGET_GLOBAL_CFLAGS += -DQCOM_BSP
-         TARGET_GLOBAL_CPPFLAGS += -DQCOM_BSP
+@@ -12,7 +12,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
      endif
  
      # Enable DirectTrack for legacy targets
@@ -23,8 +21,6 @@ index e65a6fc..08680b0 100644
          ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
              TARGET_GLOBAL_CFLAGS += -DQCOM_DIRECTTRACK
              TARGET_GLOBAL_CPPFLAGS += -DQCOM_DIRECTTRACK
-         endif
-     endif
 -- 
-1.9.1
+1.8.1.2
 
