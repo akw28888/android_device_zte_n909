@@ -7,6 +7,9 @@ installAll=0
 patchmode=""
 revertmode=0
 [ "${ANDROID_TOP_DIR}" = "" ] && ANDROID_TOP_DIR=$(cd $PATCHESDIR/../../../..;pwd;cd $curdir)
+DeviceDir=$(dirname $(dirname $0))
+DeviceDir=${DeviceDir#$ANDROID_TOP_DIR/}
+
 if [ $# -ge 1 ]; then
     if echo $* | grep -q "\-all" ; then
         installAll=1
@@ -18,7 +21,7 @@ if [ $# -ge 1 ]; then
         revertmode=1;
     fi
 fi
-
+[ "$patchmode" != "am" -a $revertmode -eq 0 ] && echo $DeviceDir > $ANDROID_TOP_DIR/.auto_patched
 cd $PATCHESDIR
 for fpath in $(find . -type f -follow -name "*.patch" -o -name "*.diff" | sed -e "s:^\./::" | sort -n); do
      mpath=$fpath
@@ -53,3 +56,5 @@ for fpath in $(find . -type f -follow -name "*.patch" -o -name "*.diff" | sed -e
           fi
      fi
 done
+[ "$patchmode" != "am" -a $revertmode -eq 0 ] && echo DONE >>$ANDROID_TOP_DIR/.auto_patched
+[ "$patchmode" != "am" -a $revertmode -eq 1 ] && rm -f $ANDROID_TOP_DIR/.auto_patched
