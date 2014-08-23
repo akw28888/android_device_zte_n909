@@ -154,7 +154,3 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/ath6kl/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
 
-# keep compatibility for stock rom
-PRODUCT_PROPERTY_OVERRIDES += \
-   ro.product.device=ZTE-N909
-

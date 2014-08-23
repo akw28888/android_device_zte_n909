@@ -1,15 +1,14 @@
-From 9ba549e0fb00a85b36582d044dc52df19ff9d503 Mon Sep 17 00:00:00 2001
-From: nx111 <gd.zhangdz@gmail.com>
-Date: Sat, 23 Aug 2014 14:27:25 +0800
+From ca20e0c791631d46d29adcc30c36bb64d191e797 Mon Sep 17 00:00:00 2001
+From: dianlujitao <dianlujitao@gmail.com>
+Date: Sun, 11 May 2014 12:23:03 +0800
 Subject: [PATCH] fix omx on msm7x27a
 
-Change-Id: I37a539779bbd76ada32d19bbf981ca5ce6655fc5
+Change-Id: I3a0f710c91f1633652e056ef173b5e63e92141e4
 ---
  media/libmedia/Android.mk                           | 2 +-
- media/libmediaplayerservice/Android.mk              | 4 ++++
  media/libmediaplayerservice/StagefrightRecorder.cpp | 4 ++++
  media/libstagefright/Android.mk                     | 6 +++++-
- 4 files changed, 14 insertions(+), 2 deletions(-)
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/media/libmedia/Android.mk b/media/libmedia/Android.mk
 index 62df848..45721d4 100644
@@ -24,21 +23,6 @@ index 62df848..45721d4 100644
          ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
              LOCAL_SRC_FILES += IDirectTrack.cpp IDirectTrackClient.cpp
          endif
-diff --git a/media/libmediaplayerservice/Android.mk b/media/libmediaplayerservice/Android.mk
-index 1c8c32d..dbbd4f3 100644
---- a/media/libmediaplayerservice/Android.mk
-+++ b/media/libmediaplayerservice/Android.mk
-@@ -81,6 +81,10 @@ ifeq ($(TARGET_BOARD_PLATFORM),msm7x27a)
-     LOCAL_CFLAGS += -DUSE_SUBMIT_ONE_INPUT_BUFFER
- endif
- 
-+ifeq ($(TARGET_BOARD_PLATFORM),msm7x27a)
-+    LOCAL_CFLAGS += -DUSE_SUBMIT_ONE_INPUT_BUFFER
-+endif
-+
- include $(BUILD_SHARED_LIBRARY)
- 
- include $(call all-makefiles-under,$(LOCAL_PATH))
 diff --git a/media/libmediaplayerservice/StagefrightRecorder.cpp b/media/libmediaplayerservice/StagefrightRecorder.cpp
 index d3dbcbe..dacf3e9 100644
 --- a/media/libmediaplayerservice/StagefrightRecorder.cpp
