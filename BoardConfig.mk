@@ -140,7 +140,7 @@ TARGET_FORCE_CPU_UPLOAD := true
 # Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
-TARGET_CUSTOM_WIFI := device/zte/n909/libhardware_legacy/wifi/wifi.c
+#TARGET_CUSTOM_WIFI := device/zte/n909/libhardware_legacy/wifi/wifi.c
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HAS_ATH_WLAN := true
 BOARD_WLAN_DEVICE := ath6kl
