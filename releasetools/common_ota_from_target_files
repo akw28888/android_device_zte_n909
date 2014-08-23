@@ -455,7 +455,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   #  ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
   #  script.AssertOlderBuild(ts, ts_text)
 
-  AppendAssertions(script, OPTIONS.info_dict)
+  #AppendAssertions(script, OPTIONS.info_dict)
   device_specific.FullOTA_Assertions()
   device_specific.FullOTA_InstallBegin()
 
