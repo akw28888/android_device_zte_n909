@@ -1,7 +1,7 @@
-From 6ffea3cb792890ad0cca970f70e4723e82009780 Mon Sep 17 00:00:00 2001
+From d230ce5c180b847cf342bbbdf8e8da1effb0e2fc Mon Sep 17 00:00:00 2001
 From: WinSuk <winsuk@winsuk.net>
 Date: Sat, 7 Jun 2014 00:07:06 -0700
-Subject: [PATCH] WebViewClassic: Add freeMemoryForTests
+Subject: [PATCH 4/4] WebViewClassic: Add freeMemoryForTests
 
 Since the 4.4.3 merge, an override of freeMemoryForTests is required to build
 
@@ -14,7 +14,7 @@ diff --git a/core/java/android/webkit/WebViewClassic.java b/core/java/android/we
 index 3c377d3..09f40e3 100644
 --- a/core/java/android/webkit/WebViewClassic.java
 +++ b/core/java/android/webkit/WebViewClassic.java
-@@ -1363,6 +1363,11 @@ public String getDefaultUserAgent(Context context) {
+@@ -1363,6 +1363,11 @@ public final class WebViewClassic implements WebViewProvider, WebViewProvider.Sc
          }
  
          @Override
@@ -27,5 +27,5 @@ index 3c377d3..09f40e3 100644
              // no-op for WebViewClassic.
          }
 -- 
-1.9.3
+1.9.1
 

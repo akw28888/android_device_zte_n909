@@ -1,24 +1,23 @@
-From 640375cff8a4252b08bf6b07c51701cefb169c55 Mon Sep 17 00:00:00 2001
-From: dianlujitao <dianlujitao@gmail.com>
-Date: Mon, 31 Mar 2014 13:57:05 +0800
+From 3fb821ec5c99ef13a72149c4957ae8788116463b Mon Sep 17 00:00:00 2001
+From: nx111 <gd.zhangdz@gmail.com>
+Date: Sun, 24 Aug 2014 14:16:46 +0800
 Subject: [PATCH] Merge Dazzozo's work
 
 Change-Id: Ic9a60007d548f492b5ad1b5487e1ecd0914b301c
 ---
- include/gui/GLConsumer.h                           |    6 ++++
- libs/gui/Android.mk                                |    7 +++++
- services/surfaceflinger/Android.mk                 |    4 +++
- services/surfaceflinger/Layer.cpp                  |    4 +++
- .../RenderEngine/GLES11RenderEngine.cpp            |    6 ++++
- services/surfaceflinger/SurfaceFlingerConsumer.cpp |   32 ++++++++++++++++++++
- services/surfaceflinger/SurfaceFlingerConsumer.h   |    7 +++++
- 7 files changed, 66 insertions(+)
+ include/gui/GLConsumer.h                           |  6 ++++
+ services/surfaceflinger/Android.mk                 |  8 ++++++
+ services/surfaceflinger/Layer.cpp                  |  4 +++
+ .../RenderEngine/GLES11RenderEngine.cpp            |  6 ++++
+ services/surfaceflinger/SurfaceFlingerConsumer.cpp | 32 ++++++++++++++++++++++
+ services/surfaceflinger/SurfaceFlingerConsumer.h   |  7 +++++
+ 6 files changed, 63 insertions(+)
 
 diff --git a/include/gui/GLConsumer.h b/include/gui/GLConsumer.h
-index d5d9c5b..2aea54a 100644
+index f08189f..36ae0b7 100644
 --- a/include/gui/GLConsumer.h
 +++ b/include/gui/GLConsumer.h
-@@ -375,7 +375,13 @@ private:
+@@ -384,7 +384,13 @@ private:
      // glCopyTexSubImage to read from the texture.  This is a hack to work
      // around a GL driver limitation on the number of FBO attachments, which the
      // browser's tile cache exceeds.
@@ -32,30 +31,8 @@ index d5d9c5b..2aea54a 100644
  
      // EGLSlot contains the information and object references that
      // GLConsumer maintains about a BufferQueue buffer slot.
-diff --git a/libs/gui/Android.mk b/libs/gui/Android.mk
-index 80746e4..466fb90 100644
---- a/libs/gui/Android.mk
-+++ b/libs/gui/Android.mk
-@@ -67,10 +67,17 @@ endif
- ifeq ($(TARGET_BOARD_PLATFORM), tegra3)
- 	LOCAL_CFLAGS += -DDONT_USE_FENCE_SYNC
- endif
-+ifeq ($(TARGET_DOESNT_USE_FENCE_SYNC), true)
-+	LOCAL_CFLAGS += -DDONT_USE_FENCE_SYNC
-+endif
- ifeq ($(TARGET_TOROPLUS_RADIO), true)
- 	LOCAL_CFLAGS += -DTOROPLUS_RADIO
- endif
- 
-+ifeq ($(BOARD_ADRENO_DECIDE_TEXTURE_TARGET),true)
-+    LOCAL_CFLAGS += -DDECIDE_TEXTURE_TARGET
-+endif
-+
- include $(BUILD_SHARED_LIBRARY)
- 
- ifeq (,$(ONE_SHOT_MAKEFILE))
 diff --git a/services/surfaceflinger/Android.mk b/services/surfaceflinger/Android.mk
-index a38ef7a..7fc8a62 100644
+index 211f5b1..2e746df 100644
 --- a/services/surfaceflinger/Android.mk
 +++ b/services/surfaceflinger/Android.mk
 @@ -84,6 +84,10 @@ else
@@ -69,11 +46,22 @@ index a38ef7a..7fc8a62 100644
  LOCAL_CFLAGS += -fvisibility=hidden
  
  LOCAL_SHARED_LIBRARIES := \
+@@ -121,6 +125,10 @@ endif
+     LOCAL_CFLAGS += -DQCOM_BSP
+ endif
+ 
++ifeq ($(TARGET_USES_ION),true)
++    LOCAL_CFLAGS += -DUSE_ION
++endif
++
+ LOCAL_MODULE:= libsurfaceflinger
+ 
+ include $(BUILD_SHARED_LIBRARY)
 diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
-index 56b1b1d..3c2b39d 100644
+index cbf51bd..4fda89a 100644
 --- a/services/surfaceflinger/Layer.cpp
 +++ b/services/surfaceflinger/Layer.cpp
-@@ -1102,7 +1102,11 @@ Region Layer::latchBuffer(bool& recomputeVisibleRegions)
+@@ -1164,7 +1164,11 @@ Region Layer::latchBuffer(bool& recomputeVisibleRegions)
  
          Reject r(mDrawingState, getCurrentState(), recomputeVisibleRegions);
  
@@ -187,5 +175,5 @@ index 688ad32..a7ce475 100644
      // See GLConsumer::bindTextureImageLocked().
      status_t bindTextureImage();
 -- 
-1.7.9.5
+1.9.1
 

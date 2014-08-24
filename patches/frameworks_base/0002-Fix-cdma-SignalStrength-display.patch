@@ -1,7 +1,7 @@
-From ef08278dd37080a1c04753c5bd6b0b8b80ea06fc Mon Sep 17 00:00:00 2001
+From bcbf35826bbda16a41453717a9f92ac7f2503da8 Mon Sep 17 00:00:00 2001
 From: huangqiwu <huangqiwu@xiaomi.com>
 Date: Mon, 11 Nov 2013 10:35:21 +0800
-Subject: [PATCH] Fix cdma SignalStrength display
+Subject: [PATCH 2/4] Fix cdma SignalStrength display
 
 N/A
 
@@ -11,10 +11,10 @@ Signed-off-by: huangqiwu <huangqiwu@xiaomi.com>
  1 file changed, 15 insertions(+), 16 deletions(-)
 
 diff --git a/telephony/java/android/telephony/SignalStrength.java b/telephony/java/android/telephony/SignalStrength.java
-index 7b9cf4e..1c809f0 100644
+index a2e061c..a872add 100644
 --- a/telephony/java/android/telephony/SignalStrength.java
 +++ b/telephony/java/android/telephony/SignalStrength.java
-@@ -485,8 +485,8 @@ public int getLevel() {
+@@ -532,8 +532,8 @@ public class SignalStrength implements Parcelable {
                  /* We don't know cdma, use evdo */
                  level = evdoLevel;
              } else {
@@ -25,7 +25,7 @@ index 7b9cf4e..1c809f0 100644
              }
          }
          if (DBG) log("getLevel=" + level);
-@@ -516,8 +516,8 @@ public int getAsuLevel() {
+@@ -570,8 +570,8 @@ public class SignalStrength implements Parcelable {
                  /* We don't know cdma use, evdo */
                  asuLevel = evdoAsuLevel;
              } else {
@@ -36,7 +36,7 @@ index 7b9cf4e..1c809f0 100644
              }
          }
          if (DBG) log("getAsuLevel=" + asuLevel);
-@@ -542,8 +542,7 @@ public int getDbm() {
+@@ -603,8 +603,7 @@ public class SignalStrength implements Parcelable {
              int cdmaDbm = getCdmaDbm();
              int evdoDbm = getEvdoDbm();
  
@@ -46,7 +46,7 @@ index 7b9cf4e..1c809f0 100644
          }
          if (DBG) log("getDbm=" + dBm);
          return dBm;
-@@ -616,10 +615,10 @@ public int getCdmaLevel() {
+@@ -677,10 +676,10 @@ public class SignalStrength implements Parcelable {
          int levelDbm;
          int levelEcio;
  
@@ -61,7 +61,7 @@ index 7b9cf4e..1c809f0 100644
          else levelDbm = SIGNAL_STRENGTH_NONE_OR_UNKNOWN;
  
          // Ec/Io are in dB*10
-@@ -629,7 +628,7 @@ public int getCdmaLevel() {
+@@ -690,7 +689,7 @@ public class SignalStrength implements Parcelable {
          else if (cdmaEcio >= -150) levelEcio = SIGNAL_STRENGTH_POOR;
          else levelEcio = SIGNAL_STRENGTH_NONE_OR_UNKNOWN;
  
@@ -70,7 +70,7 @@ index 7b9cf4e..1c809f0 100644
          if (DBG) log("getCdmaLevel=" + level);
          return level;
      }
-@@ -676,10 +675,10 @@ public int getEvdoLevel() {
+@@ -737,10 +736,10 @@ public class SignalStrength implements Parcelable {
          int levelEvdoDbm;
          int levelEvdoSnr;
  
@@ -85,7 +85,7 @@ index 7b9cf4e..1c809f0 100644
          else levelEvdoDbm = SIGNAL_STRENGTH_NONE_OR_UNKNOWN;
  
          if (evdoSnr >= 7) levelEvdoSnr = SIGNAL_STRENGTH_GREAT;
-@@ -688,7 +687,7 @@ public int getEvdoLevel() {
+@@ -749,7 +748,7 @@ public class SignalStrength implements Parcelable {
          else if (evdoSnr >= 1) levelEvdoSnr = SIGNAL_STRENGTH_POOR;
          else levelEvdoSnr = SIGNAL_STRENGTH_NONE_OR_UNKNOWN;
  

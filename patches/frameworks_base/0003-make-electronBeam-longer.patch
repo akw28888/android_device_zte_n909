@@ -1,7 +1,7 @@
-From 8e2717447a2d667f5566a78d57a51a20f36fb0e0 Mon Sep 17 00:00:00 2001
+From f7f3ba72443788c9391d86ffa1b31c2c3ccbf836 Mon Sep 17 00:00:00 2001
 From: xiaognol <317065820@qq.com>
 Date: Tue, 13 May 2014 02:19:03 +0800
-Subject: [PATCH] make electronBeam longer
+Subject: [PATCH 3/4] make electronBeam longer
 
 Change-Id: I5540080534cb7ff0965a43fa83ee17f0893cbdef
 Signed-off-by: xiaognol <317065820@qq.com>
@@ -11,7 +11,7 @@ Signed-off-by: xiaognol <317065820@qq.com>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/services/java/com/android/server/power/DisplayPowerController.java b/services/java/com/android/server/power/DisplayPowerController.java
-index cdbd723..f31a05a 100644
+index 093df06..dcbfd3f 100644
 --- a/services/java/com/android/server/power/DisplayPowerController.java
 +++ b/services/java/com/android/server/power/DisplayPowerController.java
 @@ -110,8 +110,8 @@ final class DisplayPowerController {
@@ -26,7 +26,7 @@ index cdbd723..f31a05a 100644
      private static final int MSG_UPDATE_POWER_STATE = 1;
      private static final int MSG_PROXIMITY_SENSOR_DEBOUNCED = 2;
 diff --git a/services/java/com/android/server/power/ElectronBeam.java b/services/java/com/android/server/power/ElectronBeam.java
-index 21b6ed1..73e1d72 100644
+index 4c925e2..08ac148 100644
 --- a/services/java/com/android/server/power/ElectronBeam.java
 +++ b/services/java/com/android/server/power/ElectronBeam.java
 @@ -66,7 +66,7 @@ final class ElectronBeam {
@@ -39,5 +39,5 @@ index 21b6ed1..73e1d72 100644
  
      // The number of frames to draw when preparing the animation so that it will
 -- 
-1.8.3.2
+1.9.1
 

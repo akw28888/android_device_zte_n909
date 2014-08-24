@@ -58,17 +58,6 @@ index 7c7da8c..ee1a056 100644
      ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
          ifeq ($(call is-chipset-in-board-platform,msm8960),true)
              LOCAL_SRC_FILES += LPAPlayerALSA.cpp TunnelPlayer.cpp
-@@ -112,6 +112,10 @@ ifneq ($(filter caf bfam,$(TARGET_QCOM_AUDIO_VARIANT)),)
-             LOCAL_SRC_FILES += LPAPlayer.cpp
-             LOCAL_CFLAGS += -DLEGACY_LPA
-         endif
-+        ifeq ($(call is-chipset-in-board-platform,msm7x27a),true)
-+            LOCAL_SRC_FILES += LPAPlayer.cpp
-+            LOCAL_CFLAGS += -DLEGACY_LPA -DUSE_LPA_MODE
-+        endif
-         ifeq ($(NO_TUNNEL_MODE_FOR_MULTICHANNEL),true)
-             LOCAL_CFLAGS += -DNO_TUNNEL_MODE_FOR_MULTICHANNEL
-         endif
 -- 
 1.9.1
 
