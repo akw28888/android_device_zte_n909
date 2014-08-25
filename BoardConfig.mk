@@ -159,3 +159,6 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/ath6kl/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
 
+# adb can runs as root
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+
