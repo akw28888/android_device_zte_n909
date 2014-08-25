@@ -204,8 +204,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mass_storage,adb \
-    ro.vold.umsdirtyratio=50
+    ro.secure=0 \
+    persist.sys.usb.config=mtp,adb \
+    persist.service.adb.enable=1 \
+    persist.sys.root_access=1 
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
