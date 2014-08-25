@@ -106,6 +106,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Stk
 
+# webkit
+PRODUCT_PACKAGES += \
+    libwebcore
+
 # Files
 PRODUCT_COPY_FILES += \
     device/zte/n909/rootdir/init.qcom.rc:root/init.qcom.rc \
