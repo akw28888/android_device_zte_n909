@@ -1,14 +1,25 @@
+From 6d793b77835bf86ab36508cec81d2164b9cf8773 Mon Sep 17 00:00:00 2001
+From: nx111 <gd.zhangdz@gmail.com>
+Date: Fri, 29 Aug 2014 10:18:43 +0800
+Subject: [PATCH] allow cdma and gsm all in one phone.
+
+Change-Id: Idce345580b678767f0f21d75b2155a81517ddf3f
+---
+ res/values-zh-rCN/strings.xml |  3 +++
+ res/values/strings.xml        | 17 ++++++++++++++---
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+
 diff --git a/res/values-zh-rCN/strings.xml b/res/values-zh-rCN/strings.xml
-index 1b9b69e..c72072a 100644
+index 1b9b69e..e5a4602 100644
 --- a/res/values-zh-rCN/strings.xml
 +++ b/res/values-zh-rCN/strings.xml
 @@ -287,6 +287,9 @@
      <string name="multi_category_disable" msgid="880104702904139505">"已停用多类别"</string>
      <string name="network_lte" msgid="7702681952521375754">"LTE（建议）"</string>
      <string name="network_4G" msgid="2723512640529983138">"4G（建议）"</string>
-+    <string name="network_3G">WCDMA (3G)</string>
-+    <string name="network_2G">GSM (2G)</string>
-+    <string name="network_1x">CDMA (2G)</string>
++    <string name="network_3G">WCDMA  (3G)</string>
++    <string name="network_2G">GSM    (2G)</string>
++    <string name="network_1x">CDMA   (2G)</string>
      <string name="network_global" msgid="1323190488685355309">"通用"</string>
      <string name="cdma_system_select_title" msgid="5757657769327732833">"系统选择"</string>
      <string name="cdma_system_select_summary" msgid="60460043745797517">"更改 CDMA 漫游模式"</string>
@@ -75,3 +86,6 @@ index 65ee972..699cd10 100644
      </string-array>
  
      <string name="cdma_subscription_title">CDMA subscription</string>
+-- 
+1.9.1
+
