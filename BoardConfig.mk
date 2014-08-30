@@ -108,7 +108,7 @@ TARGET_PROVIDES_RELEASETOOLS := true
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/zte/n909/releasetools/common_ota_from_target_files
 
 # Recovery
-#RECOVERY_VARIANT := philz
+RECOVERY_VARIANT := philz
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/n909/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/zte/n909/recovery/init.rc
