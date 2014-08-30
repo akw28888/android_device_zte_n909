@@ -108,19 +108,19 @@ TARGET_PROVIDES_RELEASETOOLS := true
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/zte/n909/releasetools/common_ota_from_target_files
 
 # Recovery
-RECOVERY_VARIANT := philz
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
+#RECOVERY_VARIANT := philz
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/n909/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/zte/n909/recovery/init.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 480x854
 TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
-#BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics.c
 
 #philz recovery
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn20_12x34.h\"
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn20_12x34.h\"
 
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics_cn.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics_cn.c
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/zte/n909/ril/
