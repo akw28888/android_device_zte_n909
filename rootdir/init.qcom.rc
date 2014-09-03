@@ -39,6 +39,10 @@ on init
     export EXTERNAL_STORAGE /storage/sdcard1
     export SECONDARY_STORAGE /storage/sdcard0
 
+    # for backwards compatibility
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+
 on boot
     mount debugfs debugfs /sys/kernel/debug
 
