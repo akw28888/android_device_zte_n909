@@ -34,3 +34,8 @@ PRODUCT_DEVICE := n909
 # CM packages
 PRODUCT_PACKAGES += \
     Torch
+
+#Camera HAL
+PRODUCT_PACKAGES += \
+    camera.msm7x27a
+
