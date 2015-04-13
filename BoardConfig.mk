@@ -1,5 +1,5 @@
 #
-# Copyright 2014 The Android Open Source Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,8 +33,10 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a5
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno203
-ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+
 TARGET_BOOTLOADER_BOARD_NAME := n909
 
 # Qualcomm hardware
@@ -79,7 +81,7 @@ BOARD_HARDWARE_CLASS := device/zte/n909/cmhw
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00200000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=enforcing
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=permissive
 BOARD_PAGE_SIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/zte/msm8x25q
 #TARGET_KERNEL_CONFIG := n909_defconfig
@@ -91,6 +93,8 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Media
 TARGET_QCOM_MEDIA_VARIANT := legacy
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+TARGET_QCOM_LEGACY_OMX := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -104,10 +108,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 1207943168 # 0x47FFC000
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 
-# OTA Packaging
-TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/zte/n909/releasetools/common_ota_from_target_files
-
 # Recovery
 RECOVERY_VARIANT := philz
 TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/n909/recovery-kernel
@@ -117,11 +117,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 480x854
 TARGET_RECOVERY_FSTAB := device/zte/n909/rootdir/fstab.qcom
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics.c
-
-#philz recovery
-#BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn20_12x34.h\"
-
-#BOARD_CUSTOM_GRAPHICS := ../../../device/zte/n909/recovery/graphics_cn.c
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/zte/n909/ril/
@@ -150,8 +145,8 @@ TARGET_CUSTOM_WIFI := ../../device/zte/n909/libhardware_legacy/wifi/wifi.c
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HAS_ATH_WLAN := true
 BOARD_WLAN_DEVICE := ath6kl
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_ath6kl
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
@@ -159,7 +154,4 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl/ath6kl_sdio.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/ath6kl/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
-
-# adb can runs as root
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
