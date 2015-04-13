@@ -139,8 +139,9 @@ on emmc-fs
     #exec /system/bin/sh -c "/system/xbin/busybox mount /dev/block/platform/msm_sdcc.3/by-num/p20  /storage/sdcard0"
 
 on fs
-	# mount mtd partitions
+# mount mtd partitions
     mount_all fstab.nand.msm7627a
     mount yaffs2 mtd@persist /persist nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
 
+    setprop ro.crypto.fuse_sdcard true
