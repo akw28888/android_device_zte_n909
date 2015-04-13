@@ -106,7 +106,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Stk
 
-# webkit
+# Webkit
 PRODUCT_PACKAGES += \
     libwebcore
 
@@ -159,7 +159,9 @@ PRODUCT_COPY_FILES += \
     device/zte/n909/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
     device/zte/n909/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl
 
-# Properties
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
 
 # Media
 PRODUCT_COPY_FILES += \
