@@ -138,11 +138,15 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/zte/n909/configs/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/zte/n909/configs/apns-conf.xml:system/etc/apns-conf.xml \
-    device/zte/n909/configs/thermald.conf:system/etc/thermald.conf \
     device/zte/n909/configs/thermald-8x25-1008000_therm.conf:system/etc/thermald-8x25-1008000_therm.conf \
     device/zte/n909/configs/thermald-8x25-1104000_therm.conf:system/etc/thermald-8x25-1104000_therm.conf \
     device/zte/n909/configs/thermald-8x25-1152000_therm.conf:system/etc/thermald-8x25-1152000_therm.conf \
+    device/zte/n909/configs/thermald-8x25-1209600_therm.conf:system/etc/thermald-8x25-1209600_therm.conf \
+    device/zte/n909/configs/thermald-8x25-1401600_therm.conf:system/etc/thermald-8x25-1401600_therm.conf \
+    device/zte/n909/thermald-8x25-msm1-pmic_therm.conf:/system/etc/thermald-8x25-msm1-pmic_therm.conf \
+    device/zte/n909/thermald-8x25-msm2-msm_therm.conf:/system/etc/thermald-8x25-msm2-msm_therm.conf \
+    device/zte/n909/thermald-8x25-msm2-pmic_therm.conf:/system/etc/thermald-8x25-msm2-pmic_therm.conf \
+    device/zte/n909/thermald-8x25q-msm2-pmic_therm.conf:/system/etc/thermald-8x25q-msm2-pmic_therm.conf \
     device/zte/n909/configs/init.qcom.thermald_conf.sh:system/etc/init.qcom.thermald_conf.sh \
     device/zte/n909/configs/init.qcom.fm.sh:system/etc/init.qcom.fm.sh
 
