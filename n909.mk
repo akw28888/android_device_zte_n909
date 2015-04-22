@@ -26,6 +26,13 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm7x27a \
+
+# Torch
+PRODUCT_PACKAGES += Torch
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
@@ -161,6 +168,7 @@ PRODUCT_COPY_FILES += \
 
 # Charger
 PRODUCT_PACKAGES += \
+    charger \
     charger_res_images
 
 # Media
@@ -171,8 +179,6 @@ PRODUCT_COPY_FILES += \
 
 # transmitter isn't supported
 PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.fm.mulinst.recording.support=false \
-#    ro.fm.analogpath.supported=false \
     ro.fm.transmitter=false
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -198,10 +204,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.max.fling_velocity=4000 \
     ro.opengles.version=131072 \
     ro.sf.lcd_density=240
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=32m \
-    dalvik.vm.heapsize=64m
 
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
